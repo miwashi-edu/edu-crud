@@ -15,3 +15,13 @@ testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
 @Container
 private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");
+
+```java
+System.setProperty("hibernate.dialect","org.hibernate.dialect.MySQLInnoDBDialect");
+System.setProperty("hibernate.connection.driver_class",mySQLContainer.getDriverClassName());
+System.setProperty("hibernate.connection.url",mySQLContainer.getJdbcUrl());
+System.setProperty("hibernate.connection.username",mySQLContainer.getUsername());
+System.setProperty("hibernate.connection.password",mySQLContainer.getPassword());
+System.setProperty("hibernate.show_sql","true");
+System.setProperty("hibernate.hbm2ddl","update");
+```
