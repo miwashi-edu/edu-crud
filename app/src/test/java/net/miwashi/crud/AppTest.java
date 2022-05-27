@@ -27,10 +27,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Testcontainers
 public class AppTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger( AppTest.class );
-    private static final String INIT_DB_FILE_NAME = "initdb.sql";
     @Container
     private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");
+    protected static final Logger LOGGER = LoggerFactory.getLogger( AppTest.class );
+    protected static final String INIT_DB_FILE_NAME = "initdb.sql";
 
     @BeforeAll
     public static void setUp() throws Exception{
