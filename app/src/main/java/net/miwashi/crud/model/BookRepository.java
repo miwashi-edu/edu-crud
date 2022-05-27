@@ -1,5 +1,8 @@
 package net.miwashi.crud.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,6 +11,7 @@ import java.util.Properties;
 
 public class BookRepository {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger( BookRepository.class );
     private final String CONNECTION_STRING;
     private final Properties connectionProps;
 
@@ -22,7 +26,6 @@ public class BookRepository {
         Connection con = null;
         try {
             con = DriverManager.getConnection(CONNECTION_STRING, connectionProps);
-
             var stmt = con.prepareStatement("INSERT INTO BOOKS(NAME) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, Book.getName());
             stmt.execute();
@@ -32,7 +35,7 @@ public class BookRepository {
                 Book.setId(bookId);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception thrown in Book.create", e);
         } finally {
             try {
                 con.close();
@@ -56,7 +59,31 @@ public class BookRepository {
                 Book.setId(id);
             }
         }catch(Exception e){
+            LOGGER.error("Exception thrown in Book.findById", e);
+        }finally{
+            try {
+                connection.close();
+            }catch(Exception ignore){}
+        }
+        return Book;
+    }
 
+    public Book findByName(String searchedName) {
+        Connection connection = null;
+        Book Book = null;
+        try{
+            connection = DriverManager.getConnection(CONNECTION_STRING, connectionProps);
+            var stmt = connection.prepareStatement("SELECT ID, NAME FROM BOOKS WHERE NAME = ?");
+            stmt.setString(1, searchedName);
+            var rs = stmt.executeQuery();
+            if(rs.next()){
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                Book = new Book(name);
+                Book.setId(id);
+            }
+        }catch(Exception e){
+            LOGGER.error("Exception thrown in Book.findByName", e);
         }finally{
             try {
                 connection.close();
