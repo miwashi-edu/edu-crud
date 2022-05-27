@@ -56,9 +56,89 @@ public class AppTest {
     }
 
     @Test
-    void shouldRun() {
+    public void shouldStoreBooks() throws Exception{
         var books = new BookRepository();
         var book = books.create(new Book("Java for Beginners"));
         assertNotEquals( 0, book.getId(), "Indx must not be zero!");
+    }
+
+    @Test
+    public void shouldStoreAuthorOnBooks() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreMultipleAuthorOnBooks() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreLendings() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreReturns() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreAttributeIdOnBbook() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreAttributeIsbnOnBbook() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreAttributePublishDateOnBbook() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreGradeOnBbook() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStorelendingDateOnBbook() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreLibraryCardOnUser() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldHaveCorrectFormatOnLibraryCardNumber() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreFirstNameOnUser() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreSurNameOnUser() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreWhichBookOnLendingInformation() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreOutDateOnLendingInformation() throws Exception{
+        fail("not implemented yet!");
+    }
+
+    @Test
+    public void shouldStoreReturnDateOnLendingInformation() throws Exception{
+        fail("not implemented yet!");
     }
 }
