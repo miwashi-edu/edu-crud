@@ -4,11 +4,25 @@
 package net.miwashi.crud;
 
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+@Testcontainers
+public class AppTest {
+
+    @Container
+    private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");
+
+    @Test
+    void shouldRun() {
+
+        System.out.println(mySQLContainer.getJdbcUrl());
+        System.out.println(mySQLContainer.getPassword());
+        System.out.println(mySQLContainer.getDatabaseName());
+
     }
 }
